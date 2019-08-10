@@ -1,9 +1,19 @@
 image: python:3.7
 
 stages:
+  - check_data
   - train
+  - check_predictions
   - evaluate
   - release
+
+check_data:
+  stage: check_data
+  script:
+    - pip install pipenv
+    - pipenv install
+    - dvc pull
+    - python check_data.py
 
 train:
   stage: train

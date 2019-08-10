@@ -3,6 +3,12 @@ YOUR_BUCKET_PATH:=s3://bla/data/
 
 .PHONY: test
 
+reset: ## delete all dvc files, so you can start fresh
+	rm -r -f .dvc
+	rm -f data.dvc
+	rm -f clean_data/preprocess.dvc
+	rm -f model/train_rf.dvc
+
 dep: ## install python dependencies
 	pipenv install
 
