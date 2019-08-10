@@ -1,9 +1,8 @@
-data/*
 .dvc
 
 *idea
 Pipfile.lock
-/data
-models/
+data/*
+models/*
 clean_data/*
 !*.gitkeep

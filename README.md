@@ -3,8 +3,11 @@
 is not finalized in a gitlab Pipeline that's easy to use, nor
 is the blog post written.]
 
+To Dos:
+-
+
 - We use gitlab as CI
-- DVC on tob of the gitlab as vc with AWS S3 as storage.
+- DVC on top of the gitlab as vc with AWS S3 as storage.
 - xgboost?
 - a kaggle challenge (https://www.kaggle.com/c/kkbox-music-recommendation-challenge/data) to illustrate
   what up in here.
