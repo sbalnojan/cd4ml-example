@@ -1,0 +1,11 @@
+image: python3.7
+
+stages:
+  - train
+  - evaluate
+  - release
+
+train:
+  stage: train
+  script:
+    - pipenv install
