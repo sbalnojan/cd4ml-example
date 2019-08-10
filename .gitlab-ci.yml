@@ -8,4 +8,5 @@ stages:
 train:
   stage: train
   script:
+    - pip install pipenv
     - pipenv install
