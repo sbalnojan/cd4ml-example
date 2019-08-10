@@ -1,4 +1,0 @@
-['remote "s3storage"']
-url = s3://cb-analytics-697604830784/test-data-artifacts/
-[core]
-remote = s3storage

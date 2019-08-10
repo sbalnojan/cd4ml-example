@@ -1,4 +1,5 @@
 data/*
+.dvc
 
 *idea
 Pipfile.lock
