@@ -1,4 +1,7 @@
 ## An Example CD4ML Setup with Gitlab on AWS
+[Still work in progress. The stuff below does work, but 
+is not finalized in a gitlab Pipeline that's easy to use, nor
+is the blog post written.]
 
 - We use gitlab as CI
 - DVC on tob of the gitlab as vc with AWS S3 as storage.
@@ -9,6 +12,7 @@
 This repository/ (not yet) blog post focuses on the complete
 CD4ML pipeline, so I won't go into detail on gitlab YAML syntax, DVC
 etc. just the bare basics. But I do link to more information if I find it appropriate.
+
 
 ## Setup
 
