@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+dvc = {extras = ["s3"],version = "*"}
+sklearn = "*"
+xgboost = "*"
+numpy = "*"
+pandas = "*"
+
+[requires]
+python_version = "3.7"

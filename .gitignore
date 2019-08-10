@@ -1,0 +1,8 @@
+data/*
+
+*idea
+Pipfile.lock
+/data
+models/
+clean_data/*
+!*.gitkeep
