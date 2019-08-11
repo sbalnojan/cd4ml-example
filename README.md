@@ -19,13 +19,13 @@ In this tutorial/examplary repository you can walk along the whole way of a
 CD4ML setup (excluding the deployment process, which I assume depends on your environment). That is:
 
 1.  Setting up the whole pipeline which includes
-    1.1 Setting up DVC to version data & model
-    1.2 Setting up a gitlab pipeline to automate the execution
-2.  Workflow
-    2.1 Training everything once, and committing everything necessary
-    2.2 Replacing the ML model with something new and training that
-    2.3 Replacing the data with more data and running that through the pipeline.
-3.  Going further
+1.  Setting up DVC to version data & model
+1.  Setting up a gitlab pipeline to automate the execution
+1.  Workflow
+1.  Training everything once, and committing everything necessary
+1.  Replacing the ML model with something new and training that
+1.  Replacing the data with more data and running that through the pipeline.
+1.  Going further
     ...
 
 ## Setup
