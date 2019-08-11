@@ -1,11 +1,8 @@
 ## An Example CD4ML Setup with Gitlab on AWS
-[Still work in progress. The stuff below does work, but 
-is not finalized in a gitlab Pipeline that's easy to use, nor
-is the blog post written.]
 
-To Dos:
--
+[blog post not yet written, will follow with explanations etc.]
 
+- I did wrap most of the steps into the Makefile! Run `make help` for more info.
 - We use gitlab as CI
 - DVC on top of the gitlab as vc with AWS S3 as storage.
 - xgboost?
@@ -16,15 +13,29 @@ This repository/ (not yet) blog post focuses on the complete
 CD4ML pipeline, so I won't go into detail on gitlab YAML syntax, DVC
 etc. just the bare basics. But I do link to more information if I find it appropriate.
 
+In this tutorial/examplary repository you can walk along the whole way of a
+CD4ML setup (excluding the deployment process, which I assume depends on your environment). That is:
+
+1.  Setting up the whole pipeline which includes
+    1.1 Setting up DVC to version data & model
+    1.2 Setting up a gitlab pipeline to automate the execution
+2.  Workflow
+    2.1 Training everything once, and committing everything necessary
+    2.2 Replacing the ML model with something new and training that
+    2.3 Replacing the data with more data and running that through the pipeline.
+3.  Going further
+    ...
 
 ## Setup
 
 The project uses pipenv, you simply need to run
 `$ pipenv install`
-to install the right python version as well as the dependencies. For ref:
+to install the right python version as well as the dependencies. For reference:
 
 - dvc
 - dvc[s3] as we use AWS S3 for storage.
+
+then run `$ pipenv shell` to enter the interactive env.
 
 ## 1. Setup DVC
 
@@ -189,3 +200,12 @@ be checked in by anyone. We can simply imagine any script/lambda
 function running on a daily basis that _pulls the new data_ then
 merges it onto the old data and runs a dvc push, then a
 git add, git push, thereby triggering the gitlab pipeline.
+
+## 8 More GitLab
+
+- You can get GitLab to use a GPU, either use the instance mode and
+  configure your own instances as executor, or use the nvidia-gpu driver
+  like so: https://gist.github.com/Hopobcn/e38726fac4da272341b0e36ef464c744
+  (comments at the bottom)
+- You should use a custom image to build things in gitlab, it's
+  unnecessary to install pipenv etc. in every stage onto a blank python container.
