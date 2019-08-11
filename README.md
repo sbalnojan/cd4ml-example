@@ -2,6 +2,8 @@
 
 [blog post not yet written, will follow with explanations etc.]
 
+![](util/demo.gif)
+
 - I did wrap most of the steps into the Makefile! Run `make help` for more info.
 - We use gitlab as CI
 - DVC on top of the gitlab as vc with AWS S3 as storage.
