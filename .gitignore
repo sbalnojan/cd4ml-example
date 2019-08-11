@@ -1,5 +1,5 @@
 *idea
-Pipfile.lock
+backup*
 data/*
 models/*
 clean_data/*

@@ -12,11 +12,35 @@ check_data:
   script:
     - pip install pipenv
     - pipenv install
-    - dvc pull
-    - python check_data.py
+    - pipenv run dvc pull
+    - pipenv run python check_data.py
 
 train:
   stage: train
   script:
     - pip install pipenv
     - pipenv install
+    - pipenv run dvc pull
+    - pipenv run dvc repro train_rf.dvc
+  artifacts:
+    paths:
+    - models/
+    - clean_data/output_test.csv
+
+check_predictions:
+  stage: check_predictions
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run python check_predictions.py
+  artifacts:
+    paths:
+    - models/
+    - clean_data/output_test.csv
+
+evaluate:
+  stage: evaluate
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run python evaluate_model.py
