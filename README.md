@@ -4,12 +4,20 @@
 
 ![](util/demo.gif)
 
+[Continuous Delivery for Machine Learning](https://www.thoughtworks.com/de/radar/techniques/continuous-delivery-for-machine-learning-cd4ml-models) is the technique of applying CD practices to machine learning which has two important underpinnings:
+
+- we have to version the model/ it's configuration
+- we also have to version the data!
+
+There is a workshop with slides [here](https://github.com/ThoughtWorksInc/continuous-intelligence-workshop) from ThoughtWorks which explains/ describes a GoCD setup. I'm on GitLab and wanted to try this out as well, so here's what I've come up with.
+
+Some notes:
+
 - I did wrap most of the steps into the Makefile! Run `make help` for more info.
 - We use gitlab as CI
 - DVC on top of the gitlab as vc with AWS S3 as storage.
-- xgboost?
 - a kaggle challenge (https://www.kaggle.com/c/kkbox-music-recommendation-challenge/data) to illustrate
-  what up in here.
+  whats up in here.
 
 This repository/ (not yet) blog post focuses on the complete
 CD4ML pipeline, so I won't go into detail on gitlab YAML syntax, DVC
@@ -72,7 +80,7 @@ Run this once, this will both produce the output file, as well
 as define one step in clean_data/preprocess.dvc
 
 ```
-dvc run -f clean_data/preprocess.dvc -d preprocess_data.py \
+dvc run -f preprocess.dvc -d preprocess_data.py \
 -d data/members.csv -d data/songs.csv \
     -d data/train.csv \
     -o clean_data/output.csv \
@@ -92,7 +100,7 @@ so we will display that dependency in our run command and then
 peak at the pipeline.
 
 ```
-dvc run -f models/train_rf.dvc -d clean_data/output.csv \
+dvc run -f train_rf.dvc -d clean_data/output.csv \
 -d train_rf.py \
 -o models/model_rf.pkl \
 python train_rf.py
@@ -109,7 +117,7 @@ pipelines, we now have two, the repro is to run the pipeline itself (
 to reproduce it's outputs
 )
 Try running
-`$ $ dvc pipeline show --asci models/train_rf.dvc`
+`$ $ dvc pipeline show --asci train_rf.dvc`
 this should now display the two pipelines patched together.
 
 One final step: Run
@@ -141,7 +149,7 @@ data from yesterday.)
 the evaluation.
 
 ```
-dvc run -f clean_data/preprocess_test.dvc -d preprocess_data_eval.py \
+dvc run -f preprocess_test.dvc -d preprocess_data_eval.py \
 -d data/members.csv -d data/songs.csv \
     -d data/test.csv \
     -o clean_data/output_test.csv \
@@ -211,3 +219,11 @@ git add, git push, thereby triggering the gitlab pipeline.
   (comments at the bottom)
 - You should use a custom image to build things in gitlab, it's
   unnecessary to install pipenv etc. in every stage onto a blank python container.
+
+## 9 More on more
+
+Things that could be included in the automatic pipeline:
+
+- Tensorflow Data Validation https://www.tensorflow.org/tfx/guide/tfdv: Checking for anomalies in the data, checking against a schema.
+- Model productionizing in any form like compiling,
+  exporting it to POJO (with H2O or similar), Caffe2,...
