@@ -222,8 +222,10 @@ git add, git push, thereby triggering the gitlab pipeline.
 
 ## 9 More on more
 
-Things that could be included in the automatic pipeline:
+Things that could be included, on top, in the automatic pipeline:
 
-- Tensorflow Data Validation https://www.tensorflow.org/tfx/guide/tfdv: Checking for anomalies in the data, checking against a schema.
+- [Tensorflow Data Validation](https://www.tensorflow.org/tfx/guide/tfdv): Checking for anomalies in the data, checking against a schema.
 - Model productionizing in any form like compiling,
   exporting it to POJO (with H2O or similar), Caffe2,...
+- [mlflow](https://www.mlflow.org/docs/latest/tutorial.html): Tracking versions and their accuracy of models
+  (and even deploying them)
